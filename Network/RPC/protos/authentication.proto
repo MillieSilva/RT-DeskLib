@@ -1,0 +1,26 @@
+﻿// Authentication Service Proto for Remote Teller
+
+syntax = 'proto3';
+
+// package = 'RemoteTeller';
+
+
+service Authentication {
+
+	rpc Authenticate(Credentials) returns (AuthenticationResponse) {}
+
+}
+
+
+message Credentials {
+	string UUID = 1;
+}
+
+message AuthenticationResponse {
+	Response response = 1;
+}
+
+enum Response {
+	Ok = 0;
+	Deny = 1;
+}

@@ -1,0 +1,31 @@
+﻿// Teller Service Proto for Remote Teller
+
+syntax = 'proto3';
+
+// package = 'RemoteTeller';
+
+
+service FileTeller {
+
+	rpc ListDirectory(Directory) returns (stream Path) {}
+	rpc RequestFileMetadata(Path) returns (FileMetadata) {}
+	rpc RequestFile(Path) returns (stream File) {}
+}
+
+
+message Directory {
+	string Directory = 1;
+}
+
+message Path {
+	string Path = 1;
+}
+
+message FileMetadata {
+	string Name = 1;
+	int64 Size = 2;
+}
+
+message File {
+	bytes Chunk = 1;
+}
