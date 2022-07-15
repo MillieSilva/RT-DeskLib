@@ -22,15 +22,29 @@
 
   <ItemGroup>
     <Protobuf Include="**/*.proto" />
+    <Protobuf Remove="Tests\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Network\RPC\protos\authentication.proto" />
+    <None Remove="Tests\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Update="Network\RPC\protos\authentication.proto" GrpcServices="Both" />
     <Protobuf Update="Network\RPC\protos\teller.proto" GrpcServices="Both" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Tests\**" />
   </ItemGroup>
 	
 </Project>
