@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library.csproj",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\Tests\Tests.csproj", "{B7BBEF25-3D4B-49EB-A933-D748D0766C1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Watcher", "..\Watcher\Watcher.csproj", "{AA264483-EFAB-4911-84D2-71A8BB685D22}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "..\Worker\Worker.csproj", "{0DC9AE4D-31FC-4040-B614-05301AAB1C35}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,14 +21,6 @@ Global
 		{B7BBEF25-3D4B-49EB-A933-D748D0766C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7BBEF25-3D4B-49EB-A933-D748D0766C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7BBEF25-3D4B-49EB-A933-D748D0766C1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA264483-EFAB-4911-84D2-71A8BB685D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA264483-EFAB-4911-84D2-71A8BB685D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA264483-EFAB-4911-84D2-71A8BB685D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA264483-EFAB-4911-84D2-71A8BB685D22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DC9AE4D-31FC-4040-B614-05301AAB1C35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DC9AE4D-31FC-4040-B614-05301AAB1C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DC9AE4D-31FC-4040-B614-05301AAB1C35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DC9AE4D-31FC-4040-B614-05301AAB1C35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
