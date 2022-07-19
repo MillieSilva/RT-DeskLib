@@ -22,10 +22,10 @@ namespace Library.Network.Broker
         {
             foreach (var address in BrokerSources)
             {
-                string? metadata_json = null;
+                string? metadataJson;
                 try
                 {
-                    metadata_json = address.GetJsonFromUrl();
+                    metadataJson = address.GetJsonFromUrl();
                 }
                 catch (Exception)
                 {
@@ -33,7 +33,7 @@ namespace Library.Network.Broker
                     return null;
                 }
 
-                var metadata = JsonConvert.DeserializeObject<BrokerMetadata>(metadata_json);
+                var metadata = JsonConvert.DeserializeObject<BrokerMetadata>(metadataJson);
 
                 var uriBuilder = new UriBuilder(metadata.Hostnames[0]);
 

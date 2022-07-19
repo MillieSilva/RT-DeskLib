@@ -23,15 +23,12 @@ namespace Library.Network.Broker
 
         public BrokerWatcherRestClient()
         {
-            // TODO: Correct broker metadata hostnames to proper API urls
-            // var broker_address = Metadata.GetValidBrokerAddress();
-
-            var broker_address = "http://127.0.0.1:5000";
-
-            if (broker_address == null)
+            var brokerAddress = Constants.GetBrokerAddress();
+            
+            if (brokerAddress == null)
                 return;
-
-            client = new(broker_address)
+            
+            client = new RestClient(brokerAddress)
             {
                 // Authenticator = new HttpBasicAuthenticator("rt", "dev")
             };
