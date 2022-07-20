@@ -20,4 +20,13 @@ public class Constants
         return Metadata.GetValidBrokerAddress()?.ToString();
 #endif
     }
+
+    public static string? ResolveWorkerServerAddress()
+    {
+#if DEBUG
+        return "127.0.0.1";
+#else
+        return "0.0.0.0";
+#endif
+    }
 }
