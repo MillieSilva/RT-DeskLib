@@ -22,8 +22,8 @@ namespace Library.Network.Teller
         {
             ConnectionInfo = connectionInfo;
 
-            BrokerClient = new();
-            RPC = new(this);
+            BrokerClient = new BrokerWorkerRestClient();
+            RPC = new WorkerRPC(this);
         }
 
         public void Listen()
