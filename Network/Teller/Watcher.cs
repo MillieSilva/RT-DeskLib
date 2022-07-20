@@ -68,9 +68,11 @@ namespace Library.Network.Teller
 
         public void Connect(WorkerMetadata workerMetadata)
         {
+            var last = workerMetadata.Public_IPV4.Last();
+
             Connect(workerMetadata.UUID, new ConnectionInfo()
             {
-                IPv4 = workerMetadata.Public_IPV4[0],
+                IPv4 = last,
                 Port = Constants.DefaultWorkerServerPort
             });;
         }

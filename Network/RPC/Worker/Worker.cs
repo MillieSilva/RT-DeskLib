@@ -5,6 +5,8 @@ using Library.Network.Teller;
 
 // External Imports
 using Grpc.Core;
+using Grpc.Health.V1;
+using Grpc.HealthCheck;
 
 
 namespace Library.Network.RPC.Worker
@@ -13,7 +15,7 @@ namespace Library.Network.RPC.Worker
     {
         public Server? WorkerServer { get; private set; }
         TellerWorker Worker { get; init; }
-
+    
         public WorkerRPC(TellerWorker worker)
         {
             Worker = worker;
@@ -24,6 +26,7 @@ namespace Library.Network.RPC.Worker
             WorkerServer = new Server()
             {
                 Services = {
+                    Health.BindService(new HealthServiceImpl()),
                     Authentication.BindService(new WorkerAuthenticationRPC(this)),
                     FileTeller.BindService(new WorkerTellerRPC(this)),
                 },

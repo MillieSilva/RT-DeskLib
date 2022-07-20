@@ -15,7 +15,8 @@ public class Constants
     public static string? GetBrokerAddress()
     {
 #if DEBUG
-        return "http://127.0.0.1:5000";
+        return Metadata.GetValidBrokerAddress()?.ToString();
+        // return "127.0.0.1:5000";
 #else
         return Metadata.GetValidBrokerAddress()?.ToString();
 #endif
@@ -24,7 +25,7 @@ public class Constants
     public static string? ResolveWorkerServerAddress()
     {
 #if DEBUG
-        return "127.0.0.1";
+        return "localhost";
 #else
         return "0.0.0.0";
 #endif

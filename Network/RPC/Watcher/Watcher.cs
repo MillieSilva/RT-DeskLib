@@ -20,6 +20,8 @@ namespace Library.Network.RPC.Watcher
                 switch (Channel?.State)
                 {
                     case ChannelState.Idle:
+                        return ConnectionState.Idle;
+                        
                     case ChannelState.Connecting:
                         return ConnectionState.Checking;
 
@@ -27,11 +29,13 @@ namespace Library.Network.RPC.Watcher
                         return ConnectionState.Available;
 
                     case ChannelState.TransientFailure:
+                        return ConnectionState.TrasientFailure;
+                        
                     case ChannelState.Shutdown:
                         return ConnectionState.Offline;
 
                     default:
-                        return ConnectionState.Offline;
+                        return ConnectionState.Unknown;
                 }
             }
         }
@@ -95,6 +99,9 @@ namespace Library.Network.RPC.Watcher
 public enum ConnectionState
 {
     Checking,
+    Idle,
     Available,
-    Offline
+    Offline,
+    TrasientFailure,
+    Unknown
 }
