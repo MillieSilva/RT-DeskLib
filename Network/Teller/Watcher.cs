@@ -51,8 +51,13 @@ namespace Library.Network.Teller
         {
             if (!WorkersConnections.ContainsKey(workerMetadata.UUID))
                 return null;
-
+            
             return WorkersConnections[workerMetadata.UUID];
+        }
+        
+        public WatcherRPC? GetWorkerRPC(TellerWorker tellerWorker)
+        {
+            return WorkersConnections[tellerWorker.UUID];
         }
         
         public void Connect(Guid uuid, ConnectionInfo connectionInfo)
@@ -68,9 +73,11 @@ namespace Library.Network.Teller
 
         public void Connect(WorkerMetadata workerMetadata)
         {
+            var last = workerMetadata.Public_IPV4.Last();
+
             Connect(workerMetadata.UUID, new ConnectionInfo()
             {
-                IPv4 = workerMetadata.Public_IPV4[0],
+                IPv4 = last,
                 Port = Constants.DefaultWorkerServerPort
             });;
         }
