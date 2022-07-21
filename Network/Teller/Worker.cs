@@ -11,7 +11,7 @@ namespace Library.Network.Teller
 {
     public class TellerWorker
     {
-        public ConnectionInfo ConnectionInfo { get; internal set; }
+        public ConnectionInfo ConnectionInfo { get; }
         internal BrokerWorkerRestClient BrokerClient;
         public WorkerRPC RPC { get; }
 

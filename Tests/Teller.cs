@@ -8,48 +8,46 @@ using Library.Network.Teller;
 using Xunit;
 
 
-namespace Tests
+namespace Tests;
+
+public class Teller
 {
-    public class Teller
+    [Fact]
+    public TellerWorker TestWorker()
     {
-        [Fact]
-        public TellerWorker TestWorker()
+        var worker = new TellerWorker(new ConnectionInfo
         {
-            var worker = new TellerWorker(new()
-            {
-                IPv4 = "localhost",
-                Port = Constants.DefaultWorkerServerPort
-            });
+            IPv4 = "localhost",
+            Port = Constants.DefaultWorkerServerPort
+        });
 
-            return worker;
-        }
+        return worker;
+    }
 
-        [Fact]
-        public TellerWatcher TestWatcher()
+    [Fact]
+    public TellerWatcher TestWatcher()
+    {
+        var watcher = new TellerWatcher();
+
+        return watcher;
+    }
+
+    [Fact]
+    public bool TestWorkerWatcherConnection()
+    {
+        var worker = new TellerWorker(new ConnectionInfo
         {
-            var watcher = new TellerWatcher();
+            IPv4 = "localhost",
+            Port = Constants.DefaultWorkerServerPort
+        });
 
-            return watcher;
-        }
+        worker.Listen();
 
-        [Fact]
-        public void TestWorkerWatcherConnection()
-        {
-            var worker = new TellerWorker(new()
-            {
-                IPv4 = "localhost",
-                Port = 51002
-            });
+        var watcher = new TellerWatcher();
+        watcher.Connect(worker);
 
-            worker.Listen();
+        var rpc = watcher.GetWorkerRPC(worker);
 
-            var watcher = new TellerWatcher();
-            watcher.Connect(worker);
-
-            var directory = @"C:\Users\TechMech\Desktop";
-            // var tree = watcher.RPCClient?.ListWorkerDirectory(new Directory { Directory_ = directory });
-
-            // Assert.True(tree?.Tree.Count > 0);
-        }
+        return rpc != null && rpc.CheckServices();
     }
 }

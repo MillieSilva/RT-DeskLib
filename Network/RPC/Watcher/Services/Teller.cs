@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using Grpc.Core;
 
 
-namespace Library.Network.RPC.Watcher
+namespace Library.Network.RPC.Watcher.Services
 {
     public class WatcherTellerRPC : FileTeller.FileTellerClient
     {

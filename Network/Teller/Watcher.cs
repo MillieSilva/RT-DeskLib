@@ -51,8 +51,13 @@ namespace Library.Network.Teller
         {
             if (!WorkersConnections.ContainsKey(workerMetadata.UUID))
                 return null;
-
+            
             return WorkersConnections[workerMetadata.UUID];
+        }
+        
+        public WatcherRPC? GetWorkerRPC(TellerWorker tellerWorker)
+        {
+            return WorkersConnections[tellerWorker.UUID];
         }
         
         public void Connect(Guid uuid, ConnectionInfo connectionInfo)

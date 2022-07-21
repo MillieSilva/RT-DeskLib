@@ -2,9 +2,12 @@
 using System.Collections.ObjectModel;
 
 // Library Imports
+using Library.Network.RPC.Watcher.Services;
 
 // External Imports
 using Grpc.Core;
+using Grpc.Health.V1;
+using Grpc.HealthCheck;
 
 
 namespace Library.Network.RPC.Watcher
@@ -40,16 +43,18 @@ namespace Library.Network.RPC.Watcher
             }
         }
 
-        public WatcherAuthenticationRPC Authentication { get; init; }
-        public WatcherTellerRPC Teller { get; init; }
-
-        public WatcherRPC(ConnectionInfo connectionInfo) : base()
+        public WatcherAuthenticationRPC Authentication { get; }
+        public WatcherTellerRPC Teller { get; }
+        public Health.HealthClient Health { get; }
+        
+        public WatcherRPC(ConnectionInfo connectionInfo)
         {
             Channel = new(connectionInfo.IPv4, connectionInfo.Port, ChannelCredentials.Insecure);
             Channel.ConnectAsync();
 
             Authentication = new(Channel);
             Teller = new(Channel);
+            Health = new Health.HealthClient(Channel);
         }
 
         public bool Authenticated { get; private set; }
@@ -83,14 +88,23 @@ namespace Library.Network.RPC.Watcher
             return WorkingDirectory;
         }
 
-        public void TransferFile(string source, string target)
+        public async Task TransferFile(string source, string target)
         {
-            Teller.RequestFile(source, target);
+            await Teller.RequestFile(source, target);
         }
 
-        public void RequestFile(string source, string target)
+        public async Task RequestFile(string source, string target)
         {
-            Teller.RequestFile(source, target);
+            await Teller.RequestFile(source, target);
+        }
+
+        public bool CheckServices()
+        {
+            var authenticationState = Health.Check(new HealthCheckRequest { Service = nameof(Authentication) });
+            var tellerState = Health.Check(new HealthCheckRequest() { Service = nameof(FileTeller) });
+            
+            return authenticationState.Status == HealthCheckResponse.Types.ServingStatus.Serving
+                && tellerState.Status == HealthCheckResponse.Types.ServingStatus.Serving;
         }
     }
 }

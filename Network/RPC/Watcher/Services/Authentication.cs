@@ -3,10 +3,10 @@
 // Library Usings
 
 // External Usings
+
 using Grpc.Core;
 
-
-namespace Library.Network.RPC.Watcher
+namespace Library.Network.RPC.Watcher.Services
 {
     public class WatcherAuthenticationRPC : Authentication.AuthenticationClient
     {
